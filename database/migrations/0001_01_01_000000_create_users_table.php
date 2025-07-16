@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,12 +12,31 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+
+            // Thông tin cá nhân
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('phone')->nullable()->unique();
+            $table->string('avatar')->nullable();
+
+            // Xác thực & đăng nhập
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable(); // Có thể null nếu dùng đăng nhập Google
+            $table->string('provider')->nullable(); // google, facebook...
+            $table->string('provider_id')->nullable(); // ID từ Google/Facebook
+
+            // Trạng thái tài khoản
+            $table->enum('status', ['active', 'inactive', 'banned'])->default('active');
+
+            // Bảo mật
             $table->rememberToken();
+
+            // Thời gian
             $table->timestamps();
+
+            // Tính năng phụ
+            $table->timestamp('last_login_at')->nullable();
+            $table->string('register_ip')->nullable(); // IP đăng ký
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
