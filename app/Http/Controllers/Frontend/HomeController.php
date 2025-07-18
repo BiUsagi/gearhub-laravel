@@ -19,14 +19,14 @@ class HomeController extends Controller
             ->get();
 
         // Sản phẩm bán chạy
-        $bestSelling = Product::with('mainImage')
+        $bestSelling = Product::with('mainImage', 'category')
             ->where('stock', '<', 100)
             ->where('is_active', 1)
             ->take(4)
             ->get();
 
         // Sản phẩm mới nhất
-        $newProducts = Product::with('mainImage')
+        $newProducts = Product::with('mainImage', 'category')
             ->where('is_active', 1)
             ->latest()
             ->take(4)

@@ -358,16 +358,18 @@ body {
 
 .product-title {
     font-size: 1.2rem;
-    font-weight: 600;
+    font-weight: 500;
     margin-bottom: 0.5rem;
     color: var(--text-primary);
-}
 
-.product-price {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--danger-red);
-    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    min-height: 3em;
+    line-height: 1.5em;
 }
 
 .newsletter {
@@ -616,6 +618,15 @@ footer {
 .flash-title {
     font-size: 1rem;
     margin: 0.5rem 0;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    min-height: 2.8em;
+    line-height: 1.4em;
 }
 
 .flash-price {

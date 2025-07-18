@@ -101,26 +101,27 @@
             </div>
             <div class="row g-4">
                 @foreach ($saleProducts as $product)
-                <div class="col-lg-3 col-md-6">
-                    <div class="flash-card fade-in">
-                        <div class="flash-badge">-40%</div>
-                        <img src="{{ asset('storage/' . $product->mainImage->image_path) }}" alt="Flash Sale" class="flash-image">
-                        <div class="flash-progress">
-                            <div class="progress">
-                                <div class="progress-bar bg-danger" style="width: 75%"></div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="flash-card fade-in">
+                            <div class="flash-badge">-40%</div>
+                            <img src="{{ asset('storage/' . $product->mainImage->image_path) }}" alt="Flash Sale"
+                                class="flash-image">
+                            <div class="flash-progress">
+                                <div class="progress">
+                                    <div class="progress-bar bg-danger" style="width: 75%"></div>
+                                </div>
+                                <small class="text-danger">Đã bán 15/20</small>
                             </div>
-                            <small class="text-danger">Đã bán 15/20</small>
+                            <h3 class="flash-title">{{ $product->name }}</h3>
+                            <div class="flash-price">
+                                <span class="new-price">{{ number_format($product->sale_price, 0, ',', '.') }}₫</span>
+                                <span class="old-price">{{ number_format($product->price, 0, ',', '.') }}₫</span>
+                            </div>
+                            <button class="btn btn-danger w-100 mt-3">
+                                <i class="fas fa-cart-plus me-2"></i>Mua ngay
+                            </button>
                         </div>
-                        <h3 class="flash-title">{{ $product->name }}</h3>
-                        <div class="flash-price">
-                            <span class="new-price">{{ number_format($product->sale_price, 0, ',', '.') }}₫</span>
-                            <span class="old-price">{{ number_format($product->price, 0, ',', '.') }}₫</span>
-                        </div>
-                        <button class="btn btn-danger w-100 mt-3">
-                            <i class="fas fa-cart-plus me-2"></i>Mua ngay
-                        </button>
                     </div>
-                </div>
                 @endforeach
             </div>
         </div>
@@ -200,134 +201,54 @@
             <div class="row justify-content-center mb-5">
                 <div class="col-lg-6 text-center">
                     <h2 class="display-5 fw-bold mb-3 fade-in">Sản Phẩm Nổi Bật</h2>
-                    <p class="text-secondary fade-in">Khám phá những sản phẩm công nghệ mới nhất</p>
+                    <p class="text-secondary fade-in">Khám phá những sản phẩm công nghệ được mua nhiều nhất</p>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="hover-wrapper">
-                        <div class="product-card fade-in">
-                             <div class="new-badge">
-                                <i class="fas fa-fire me-1"></i>HOT
-                            </div>
-                            <img src="storage/products/tai-nghe-gaming-pro.png" alt="Product" class="product-image">
-                            <div class="product-category">Tai nghe</div>
-                            <h3 class="product-title">Tai nghe không dây Pro Max</h3>
-                            <div class="review-stars mb-1">
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <span class="text-secondary px-2"><small>(4.8/5 - 10.234
-                                        đánh giá)</small></span>
-                            </div>
-                            <div class="mb-2"><span class="text-secondary">Còn 15 sản phẩm</span></div>
-                            <div class="product-price">2.990.000₫</div>
-                             <div class="product-actions">
-                                <button class="btn-add-cart">
-                                    <i class="fas fa-shopping-cart me-2"></i>Thêm vào giỏ
-                                </button>
-                                <button class="btn-quick-wishlist">
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="hover-wrapper">
-                        <div class="product-card fade-in">
-                             <div class="new-badge">
-                                <i class="fas fa-fire me-1"></i>HOT
-                            </div>
-                            <img src="storage/products/sac-du-phong.webp" alt="Product" class="product-image">
-                            <div class="product-category">Sạc dự phòng</div>
-                            <h3 class="product-title">Pin sạc dự phòng 20000mAh</h3>
-                            <div class="review-stars mb-1">
-                               <i class="fa-solid fa-star fa-2xs"></i>
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <span class="text-secondary px-2"><small>(4.8/5 - 10.234
-                                        đánh giá)</small></span>
-                            </div>
-                            <div class="mb-2"><span class="text-secondary">Còn 15 sản phẩm</span></div>
-                            <div class="product-price">890.000₫</div>
-                             <div class="product-actions">
-                                <button class="btn-add-cart">
-                                    <i class="fas fa-shopping-cart me-2"></i>Thêm vào giỏ
-                                </button>
-                                <button class="btn-quick-wishlist">
-                                    <i class="fas fa-heart"></i>
-                                </button>
+                @foreach ($bestSelling as $product)
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="hover-wrapper">
+                            <div class="product-card fade-in">
+                                <div class="new-badge">
+                                    <i class="fas fa-fire me-1"></i>HOT
+                                </div>
+                                <img src="{{ asset('storage/' . $product->mainImage->image_path) }}" alt="Product"
+                                    class="product-image">
+                                <div class="product-category">{{ $product->category->name }}</div>
+                                <h3 class="product-title">{{ $product->name }}</h3>
+                                <div class="review-stars mb-1">
+                                    <i class="fa-solid fa-star fa-2xs"></i>
+                                    <i class="fa-solid fa-star fa-2xs"></i>
+                                    <i class="fa-solid fa-star fa-2xs"></i>
+                                    <i class="fa-solid fa-star fa-2xs"></i>
+                                    <i class="fa-solid fa-star fa-2xs"></i>
+                                    <span class="text-secondary px-2"><small>(4.8/5 - 10.234
+                                            đánh giá)</small></span>
+                                </div>
+                                <div class="mb-2"><span class="text-secondary">Còn {{ $product->stock }} sản phẩm</span>
+                                </div>
+                                <div class="flash-price mb-3">
+                                    @if ($product->sale_price > 0 && $product->sale_price < $product->price)
+                                        <span
+                                            class="new-price">{{ number_format($product->sale_price, 0, ',', '.') }}₫</span>
+                                        <span class="old-price">{{ number_format($product->price, 0, ',', '.') }}₫</span>
+                                    @else
+                                        <span class="new-price">{{ number_format($product->price, 0, ',', '.') }}₫
+                                        </span>
+                                    @endif
+                                </div>
+                                <div class="product-actions">
+                                    <button class="btn-add-cart">
+                                        <i class="fas fa-shopping-cart me-2"></i>Thêm vào giỏ
+                                    </button>
+                                    <button class="btn-quick-wishlist">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="hover-wrapper">
-                        <div class="product-card fade-in">
-                             <div class="new-badge">
-                                <i class="fas fa-fire me-1"></i>HOT
-                            </div>
-                            <img src="storage/products/aula-f75.webp" alt="Product" class="product-image">
-                            <div class="product-category">Bàn phím</div>
-                            <h3 class="product-title">Bàn phím cơ Gaming RGB</h3>
-                            <div class="review-stars mb-1">
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <span class="text-secondary px-2"><small>(4.8/5 - 10.234
-                                        đánh giá)</small></span>
-                            </div>
-                            <div class="mb-2"><span class="text-secondary">Còn 15 sản phẩm</span></div>
-                            <div class="product-price">1.990.000₫</div>
-                            <div class="product-actions">
-                                <button class="btn-add-cart">
-                                    <i class="fas fa-shopping-cart me-2"></i>Thêm vào giỏ
-                                </button>
-                                <button class="btn-quick-wishlist">
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="hover-wrapper">
-                        <div class="product-card fade-in">
-                             <div class="new-badge">
-                                <i class="fas fa-fire me-1"></i>HOT
-                            </div>
-                            <img src="storage/products/chuot-khong-day.jpg" alt="Product" class="product-image">
-                            <div class="product-category">Chuột</div>
-                            <h3 class="product-title">Chuột gaming không dây</h3>
-                            <div class="review-stars mb-1">
-                               <i class="fa-solid fa-star fa-2xs"></i>
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <span class="text-secondary px-2"><small>(4.8/5 - 10.234
-                                        đánh giá)</small></span>
-                            </div>
-                            <div class="mb-2"><span class="text-secondary">Còn 15 sản phẩm</span></div>
-                            <div class="product-price">1.290.000₫</div>
-                             <div class="product-actions">
-                                <button class="btn-add-cart">
-                                    <i class="fas fa-shopping-cart me-2"></i>Thêm vào giỏ
-                                </button>
-                                <button class="btn-quick-wishlist">
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <div class="text-center mt-4">
                 <a href="#" class="btn btn-outline-primary">Xem tất cả sản phẩm</a>
@@ -456,132 +377,52 @@
             <h2 class="section-title">Sản Phẩm Mới Nhất</h2>
             <p class="section-subtitle">Cập nhật những công nghệ tiên tiến nhất từ các thương hiệu hàng đầu</p>
             <div class="row">
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="hover-wrapper">
-                        <div class="product-card fade-in">
-                            <div class="new-badge">
-                                <i class="fas fa-star me-1"></i>NEW
-                            </div>
-                            <img src="storage/products/tai-nghe-gaming-pro.png" alt="Product" class="product-image">
-                            <div class="product-category">Tai nghe</div>
-                            <h3 class="product-title">Tai nghe không dây Pro Max</h3>
-                            <div class="review-stars mb-1">
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <span class="text-secondary px-2"><small>(4.8/5 - 10.234
-                                        đánh giá)</small></span>
-                            </div>
-                            <div class="mb-2"><span class="text-secondary">Còn 15 sản phẩm</span></div>
-                            <div class="product-price">2.990.000₫</div>
-                            <div class="product-actions">
-                                <button class="btn-add-cart">
-                                    <i class="fas fa-shopping-cart me-2"></i>Thêm vào giỏ
-                                </button>
-                                <button class="btn-quick-wishlist">
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="hover-wrapper">
-                        <div class="product-card fade-in">
-                            <div class="new-badge">
-                                <i class="fas fa-star me-1"></i>NEW
-                            </div>
-                            <img src="storage/products/sac-du-phong.webp" alt="Product" class="product-image">
-                            <div class="product-category">Sạc dự phòng</div>
-                            <h3 class="product-title">Pin sạc dự phòng 20000mAh</h3>
-                            <div class="review-stars mb-1">
-                               <i class="fa-solid fa-star fa-2xs"></i>
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <span class="text-secondary px-2"><small>(4.8/5 - 10.234
-                                        đánh giá)</small></span>
-                            </div>
-                            <div class="mb-2"><span class="text-secondary">Còn 15 sản phẩm</span></div>
-                            <div class="product-price">890.000₫</div>
-                             <div class="product-actions">
-                                <button class="btn-add-cart">
-                                    <i class="fas fa-shopping-cart me-2"></i>Thêm vào giỏ
-                                </button>
-                                <button class="btn-quick-wishlist">
-                                    <i class="fas fa-heart"></i>
-                                </button>
+                @foreach ($newProducts as $product)
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="hover-wrapper">
+                            <div class="product-card fade-in">
+                                <div class="new-badge">
+                                    <i class="fas fa-star me-1"></i>NEW
+                                </div>
+                                <img src="storage/products/tai-nghe-gaming-pro.png" alt="Product" class="product-image">
+                                <div class="product-category">{{ $product->category->name }}</div>
+                                <h3 class="product-title">{{ $product->name }}</h3>
+                                <div class="review-stars mb-1">
+                                    <i class="fa-solid fa-star fa-2xs"></i>
+                                    <i class="fa-solid fa-star fa-2xs"></i>
+                                    <i class="fa-solid fa-star fa-2xs"></i>
+                                    <i class="fa-solid fa-star fa-2xs"></i>
+                                    <i class="fa-solid fa-star fa-2xs"></i>
+                                    <span class="text-secondary px-2"><small>(4.8/5 - 10.234
+                                            đánh giá)</small></span>
+                                </div>
+                                <div class="mb-2"><span class="text-secondary">Còn {{ $product->stock }} sản
+                                        phẩm</span></div>
+                                <div class="flash-price mb-3">
+                                    @if ($product->sale_price > 0 && $product->sale_price < $product->price)
+                                        <span
+                                            class="new-price">{{ number_format($product->sale_price, 0, ',', '.') }}₫</span>
+                                        <span class="old-price">{{ number_format($product->price, 0, ',', '.') }}₫</span>
+                                    @else
+                                        <span class="new-price">{{ number_format($product->price, 0, ',', '.') }}₫
+                                        </span>
+                                    @endif
+                                </div>
+                                <div class="product-actions">
+                                    <button class="btn-add-cart">
+                                        <i class="fas fa-shopping-cart me-2"></i>Thêm vào giỏ
+                                    </button>
+                                    <button class="btn-quick-wishlist">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="hover-wrapper">
-                        <div class="product-card fade-in">
-                            <div class="new-badge">
-                                <i class="fas fa-star me-1"></i>NEW
-                            </div>
-                            <img src="storage/products/aula-f75.webp" alt="Product" class="product-image">
-                            <div class="product-category">Bàn phím</div>
-                            <h3 class="product-title">Bàn phím cơ Gaming RGB</h3>
-                            <div class="review-stars mb-1">
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <span class="text-secondary px-2"><small>(4.8/5 - 10.234
-                                        đánh giá)</small></span>
-                            </div>
-                            <div class="mb-2"><span class="text-secondary">Còn 15 sản phẩm</span></div>
-                            <div class="product-price">1.990.000₫</div>
-                             <div class="product-actions">
-                                <button class="btn-add-cart">
-                                    <i class="fas fa-shopping-cart me-2"></i>Thêm vào giỏ
-                                </button>
-                                <button class="btn-quick-wishlist">
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="hover-wrapper">
-                        <div class="product-card fade-in">
-                            <div class="new-badge">
-                                <i class="fas fa-star me-1"></i>NEW
-                            </div>
-                            <img src="storage/products/chuot-khong-day.jpg" alt="Product" class="product-image">
-                            <div class="product-category">Chuột</div>
-                            <h3 class="product-title">Chuột gaming không dây</h3>
-                            <div class="review-stars mb-1">
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <i class="fa-solid fa-star fa-2xs"></i>
-                                <span class="text-secondary px-2"><small>(4.8/5 - 10.234
-                                        đánh giá)</small></span>
-                            </div>
-                            <div class="mb-2"><span class="text-secondary">Còn 15 sản phẩm</span></div>
-                            <div class="product-price">1.290.000₫</div>
-                            <div class="product-actions">
-                                <button class="btn-add-cart">
-                                    <i class="fas fa-shopping-cart me-2"></i>Thêm vào giỏ
-                                </button>
-                                <button class="btn-quick-wishlist">
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+
             </div>
-             <div class="text-center mt-4">
+            <div class="text-center mt-4">
                 <a href="#" class="btn btn-outline-primary">Xem tất cả sản phẩm</a>
             </div>
         </div>
@@ -592,38 +433,38 @@
         <div class="container">
             <h2 class="section-title">Thương Hiệu Chính Hãng</h2>
             <p class="section-subtitle">Đối tác tin cậy từ những thương hiệu công nghệ hàng đầu thế giới</p>
-            
+
             <div class="brand-grid">
                 <div class="brand-card">
                     <div class="brand-logo">🍎</div>
                     <div class="brand-name">Apple</div>
                     <div class="brand-products">MacBook, iPhone, iPad</div>
                 </div>
-                
+
                 <div class="brand-card">
                     <div class="brand-logo">📱</div>
                     <div class="brand-name">Samsung</div>
                     <div class="brand-products">Galaxy, Monitor, SSD</div>
                 </div>
-                
+
                 <div class="brand-card">
                     <div class="brand-logo">🖱️</div>
                     <div class="brand-name">Logitech</div>
                     <div class="brand-products">Mouse, Keyboard, Webcam</div>
                 </div>
-                
+
                 <div class="brand-card">
                     <div class="brand-logo">🐍</div>
                     <div class="brand-name">Razer</div>
                     <div class="brand-products">Gaming Gear, Laptop</div>
                 </div>
-                
+
                 <div class="brand-card">
                     <div class="brand-logo">💻</div>
                     <div class="brand-name">ASUS</div>
                     <div class="brand-products">ROG, Laptop, Monitor</div>
                 </div>
-                
+
                 <div class="brand-card">
                     <div class="brand-logo">🔥</div>
                     <div class="brand-name">MSI</div>
@@ -634,11 +475,11 @@
     </section>
 
 
-<section class="policies-section">
+    <section class="policies-section">
         <div class="container">
             <h2 class="section-title">Chính Sách Vượt Trội</h2>
             <p class="section-subtitle">Cam kết mang đến trải nghiệm mua sắm tuyệt vời nhất</p>
-            
+
             <div class="policy-grid">
                 <div class="policy-card">
                     <div class="policy-icon">
@@ -654,7 +495,7 @@
                         <li>Hỗ trợ kỹ thuật chuyên sâu</li>
                     </ul>
                 </div>
-                
+
                 <div class="policy-card">
                     <div class="policy-icon">
                         <i class="fas fa-credit-card"></i>
@@ -669,7 +510,7 @@
                         <li>Linh hoạt kỳ hạn thanh toán</li>
                     </ul>
                 </div>
-                
+
                 <div class="policy-card">
                     <div class="policy-icon">
                         <i class="fas fa-sync-alt"></i>
@@ -685,7 +526,7 @@
                     </ul>
                 </div>
 
-                 <div class="policy-card">
+                <div class="policy-card">
                     <div class="policy-icon">
                         <i class="fas fa-phone-alt"></i>
                     </div>
