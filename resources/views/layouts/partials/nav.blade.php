@@ -13,6 +13,10 @@
                  <i class="fas fa-clock me-2"></i>
                  <span>Flash Sale mỗi ngày: 12H - 14H</span>
              </div>
+             <div class="promo-item">
+                 <i class="fas fa-clock me-2"></i>
+                 <span><strong>HOTLINE: 1900-8088</strong> - Tư vấn miễn phí 24/7</span>
+             </div>
          </div>
      </div>
  </div>

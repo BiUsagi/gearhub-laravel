@@ -95,3 +95,43 @@ document.querySelectorAll(".gh-nav-link").forEach((link) => {
         }
     });
 });
+
+// Animation cho số đếm
+window.onload = function () {
+    // Animation cho số đếm
+    function animateCount() {
+        const counters = document.querySelectorAll('.stat-number');
+
+        counters.forEach(counter => {
+            const target = parseFloat(counter.getAttribute('data-count'));
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            let current = 0;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    counter.textContent = target + (target === 99.5 ? '%' : target === 50000 ? '+' : '');
+                    clearInterval(timer);
+                } else {
+                    counter.textContent = Math.floor(current) + (target === 99.5 ? '%' : target === 50000 ? '+' : '');
+                }
+            }, 16);
+        });
+    }
+
+    // Intersection Observer để trigger animation
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCount();
+                observer.unobserve(entry.target);
+            }
+        });
+    });
+
+    const statsSection = document.querySelector('.stats-section');
+    if (statsSection) {
+        observer.observe(statsSection);
+    }
+};
