@@ -100,86 +100,28 @@
                 </div>
             </div>
             <div class="row g-4">
+                @foreach ($saleProducts as $product)
                 <div class="col-lg-3 col-md-6">
                     <div class="flash-card fade-in">
                         <div class="flash-badge">-40%</div>
-                        <img src="storage/products/tai-nghe-gaming-pro.png" alt="Flash Sale" class="flash-image">
+                        <img src="{{ asset('storage/' . $product->mainImage->image_path) }}" alt="Flash Sale" class="flash-image">
                         <div class="flash-progress">
                             <div class="progress">
                                 <div class="progress-bar bg-danger" style="width: 75%"></div>
                             </div>
                             <small class="text-danger">Đã bán 15/20</small>
                         </div>
-                        <h3 class="flash-title">Tai nghe Gaming Pro</h3>
+                        <h3 class="flash-title">{{ $product->name }}</h3>
                         <div class="flash-price">
-                            <span class="new-price">890.000₫</span>
-                            <span class="old-price">1.490.000₫</span>
+                            <span class="new-price">{{ number_format($product->sale_price, 0, ',', '.') }}₫</span>
+                            <span class="old-price">{{ number_format($product->price, 0, ',', '.') }}₫</span>
                         </div>
                         <button class="btn btn-danger w-100 mt-3">
                             <i class="fas fa-cart-plus me-2"></i>Mua ngay
                         </button>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="flash-card fade-in">
-                        <div class="flash-badge">-35%</div>
-                        <img src="storage/products/aula-f75.webp" alt="Flash Sale" class="flash-image">
-                        <div class="flash-progress">
-                            <div class="progress">
-                                <div class="progress-bar bg-danger" style="width: 60%"></div>
-                            </div>
-                            <small class="text-danger">Đã bán 12/20</small>
-                        </div>
-                        <h3 class="flash-title">Bàn phím cơ RGB</h3>
-                        <div class="flash-price">
-                            <span class="new-price">1.290.000₫</span>
-                            <span class="old-price">1.990.000₫</span>
-                        </div>
-                        <button class="btn btn-danger w-100 mt-3">
-                            <i class="fas fa-cart-plus me-2"></i>Mua ngay
-                        </button>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="flash-card fade-in">
-                        <div class="flash-badge">-50%</div>
-                        <img src="storage/products/chuot-khong-day.jpg" alt="Flash Sale" class="flash-image">
-                        <div class="flash-progress">
-                            <div class="progress">
-                                <div class="progress-bar bg-danger" style="width: 90%"></div>
-                            </div>
-                            <small class="text-danger">Đã bán 18/20</small>
-                        </div>
-                        <h3 class="flash-title">Chuột không dây</h3>
-                        <div class="flash-price">
-                            <span class="new-price">495.000₫</span>
-                            <span class="old-price">990.000₫</span>
-                        </div>
-                        <button class="btn btn-danger w-100 mt-3">
-                            <i class="fas fa-cart-plus me-2"></i>Mua ngay
-                        </button>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="flash-card fade-in">
-                        <div class="flash-badge">-30%</div>
-                        <img src="storage/products/balo-gaming.png" alt="Flash Sale" class="flash-image">
-                        <div class="flash-progress">
-                            <div class="progress">
-                                <div class="progress-bar bg-danger" style="width: 45%"></div>
-                            </div>
-                            <small class="text-danger">Đã bán 9/20</small>
-                        </div>
-                        <h3 class="flash-title">Balo Gaming</h3>
-                        <div class="flash-price">
-                            <span class="new-price">699.000₫</span>
-                            <span class="old-price">999.000₫</span>
-                        </div>
-                        <button class="btn btn-danger w-100 mt-3">
-                            <i class="fas fa-cart-plus me-2"></i>Mua ngay
-                        </button>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>

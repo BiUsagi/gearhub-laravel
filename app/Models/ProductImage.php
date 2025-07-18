@@ -12,12 +12,12 @@ class ProductImage extends Model
     protected $fillable = [
         'product_id',
         'path',
-        'is_primary',
+        'is_main',
         'order',
     ];
 
     protected $casts = [
-        'is_primary' => 'boolean',
+        'is_main' => 'boolean',
         'order' => 'integer',
     ];
 
@@ -30,6 +30,6 @@ class ProductImage extends Model
     // Scopes
     public function scopePrimary($query)
     {
-        return $query->where('is_primary', true);
+        return $query->where('is_main', true);
     }
 }

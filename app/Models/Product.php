@@ -30,6 +30,13 @@ class Product extends Model
         'is_featured' => 'boolean',
     ];
 
+
+
+    public function mainImage()
+    {
+        return $this->hasOne(ProductImage::class)->where('is_main', 1);
+    }
+
     // Relationships
     public function category()
     {
