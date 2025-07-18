@@ -19,7 +19,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="hero-image text-center fade-in">
-                        <img src="images/banner/banner1.jpg" alt="Hero Image">
+                        <img src="storage/banner/banner1.jpg" alt="Hero Image">
                     </div>
                 </div>
             </div>
@@ -103,7 +103,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="flash-card fade-in">
                         <div class="flash-badge">-40%</div>
-                        <img src="uploads/products/tai-nghe-gaming-pro.png" alt="Flash Sale" class="flash-image">
+                        <img src="storage/products/tai-nghe-gaming-pro.png" alt="Flash Sale" class="flash-image">
                         <div class="flash-progress">
                             <div class="progress">
                                 <div class="progress-bar bg-danger" style="width: 75%"></div>
@@ -123,7 +123,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="flash-card fade-in">
                         <div class="flash-badge">-35%</div>
-                        <img src="uploads/products/aula-f75.webp" alt="Flash Sale" class="flash-image">
+                        <img src="storage/products/aula-f75.webp" alt="Flash Sale" class="flash-image">
                         <div class="flash-progress">
                             <div class="progress">
                                 <div class="progress-bar bg-danger" style="width: 60%"></div>
@@ -143,7 +143,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="flash-card fade-in">
                         <div class="flash-badge">-50%</div>
-                        <img src="uploads/products/chuot-khong-day.jpg" alt="Flash Sale" class="flash-image">
+                        <img src="storage/products/chuot-khong-day.jpg" alt="Flash Sale" class="flash-image">
                         <div class="flash-progress">
                             <div class="progress">
                                 <div class="progress-bar bg-danger" style="width: 90%"></div>
@@ -163,7 +163,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="flash-card fade-in">
                         <div class="flash-badge">-30%</div>
-                        <img src="uploads/products/balo-gaming.png" alt="Flash Sale" class="flash-image">
+                        <img src="storage/products/balo-gaming.png" alt="Flash Sale" class="flash-image">
                         <div class="flash-progress">
                             <div class="progress">
                                 <div class="progress-bar bg-danger" style="width: 45%"></div>
@@ -268,7 +268,7 @@
                              <div class="new-badge">
                                 <i class="fas fa-fire me-1"></i>HOT
                             </div>
-                            <img src="uploads/products/tai-nghe-gaming-pro.png" alt="Product" class="product-image">
+                            <img src="storage/products/tai-nghe-gaming-pro.png" alt="Product" class="product-image">
                             <div class="product-category">Tai nghe</div>
                             <h3 class="product-title">Tai nghe không dây Pro Max</h3>
                             <div class="review-stars mb-1">
@@ -299,7 +299,7 @@
                              <div class="new-badge">
                                 <i class="fas fa-fire me-1"></i>HOT
                             </div>
-                            <img src="uploads/products/sac-du-phong.webp" alt="Product" class="product-image">
+                            <img src="storage/products/sac-du-phong.webp" alt="Product" class="product-image">
                             <div class="product-category">Sạc dự phòng</div>
                             <h3 class="product-title">Pin sạc dự phòng 20000mAh</h3>
                             <div class="review-stars mb-1">
@@ -330,7 +330,7 @@
                              <div class="new-badge">
                                 <i class="fas fa-fire me-1"></i>HOT
                             </div>
-                            <img src="uploads/products/aula-f75.webp" alt="Product" class="product-image">
+                            <img src="storage/products/aula-f75.webp" alt="Product" class="product-image">
                             <div class="product-category">Bàn phím</div>
                             <h3 class="product-title">Bàn phím cơ Gaming RGB</h3>
                             <div class="review-stars mb-1">
@@ -361,7 +361,7 @@
                              <div class="new-badge">
                                 <i class="fas fa-fire me-1"></i>HOT
                             </div>
-                            <img src="uploads/products/chuot-khong-day.jpg" alt="Product" class="product-image">
+                            <img src="storage/products/chuot-khong-day.jpg" alt="Product" class="product-image">
                             <div class="product-category">Chuột</div>
                             <h3 class="product-title">Chuột gaming không dây</h3>
                             <div class="review-stars mb-1">
@@ -440,7 +440,7 @@
             <div class="row justify-content-center mb-5">
                 <div class="col-lg-6 text-center">
                     <h2 class="display-6 fw-bold mb-3 fade-in">Khách Hàng Nói Gì?</h2>
-                    <p class="text-secondary fade-in">Đánh giá từ những khách hàng đã mua sắm tại TechHub</p>
+                    <p class="text-secondary fade-in">Đánh giá từ những khách hàng đã mua sắm tại GearHub</p>
                 </div>
             </div>
             <div class="row">
@@ -456,7 +456,7 @@
                         <p class="review-text">"Chất lượng sản phẩm tuyệt vời, đóng gói cẩn thận. Shop tư vấn nhiệt
                             tình, sẽ ủng hộ dài dài!"</p>
                         <div class="review-author d-flex align-items-center">
-                            <img src="https://via.placeholder.com/50" alt="Avatar" class="review-avatar">
+                            <img src="storage/user/son-sq.png" alt="Avatar" class="review-avatar">
                             <div class="ms-3">
                                 <h6 class="mb-1">Nguyễn Văn A</h6>
                                 <small class="text-secondary">Khách hàng thân thiết</small>
@@ -476,7 +476,7 @@
                         <p class="review-text">"Giao hàng nhanh, sản phẩm chính hãng 100%. Đặc biệt là chế độ bảo hành
                             rất tốt!"</p>
                         <div class="review-author d-flex align-items-center">
-                            <img src="https://via.placeholder.com/50" alt="Avatar" class="review-avatar">
+                            <img src="/storage/user/son-sq.png" alt="Avatar" class="review-avatar">
                             <div class="ms-3">
                                 <h6 class="mb-1">Trần Thị B</h6>
                                 <small class="text-secondary">Đã mua 5 sản phẩm</small>
@@ -496,7 +496,7 @@
                         <p class="review-text">"Giá cả hợp lý, dịch vụ chăm sóc khách hàng tận tâm. Rất hài lòng với
                             trải nghiệm mua sắm!"</p>
                         <div class="review-author d-flex align-items-center">
-                            <img src="https://via.placeholder.com/50" alt="Avatar" class="review-avatar">
+                            <img src="/storage/user/son-sq.png" alt="Avatar" class="review-avatar">
                             <div class="ms-3">
                                 <h6 class="mb-1">Lê Văn C</h6>
                                 <small class="text-secondary">Khách hàng mới</small>
@@ -520,7 +520,7 @@
                             <div class="new-badge">
                                 <i class="fas fa-star me-1"></i>NEW
                             </div>
-                            <img src="uploads/products/tai-nghe-gaming-pro.png" alt="Product" class="product-image">
+                            <img src="storage/products/tai-nghe-gaming-pro.png" alt="Product" class="product-image">
                             <div class="product-category">Tai nghe</div>
                             <h3 class="product-title">Tai nghe không dây Pro Max</h3>
                             <div class="review-stars mb-1">
@@ -551,7 +551,7 @@
                             <div class="new-badge">
                                 <i class="fas fa-star me-1"></i>NEW
                             </div>
-                            <img src="uploads/products/sac-du-phong.webp" alt="Product" class="product-image">
+                            <img src="storage/products/sac-du-phong.webp" alt="Product" class="product-image">
                             <div class="product-category">Sạc dự phòng</div>
                             <h3 class="product-title">Pin sạc dự phòng 20000mAh</h3>
                             <div class="review-stars mb-1">
@@ -582,7 +582,7 @@
                             <div class="new-badge">
                                 <i class="fas fa-star me-1"></i>NEW
                             </div>
-                            <img src="uploads/products/aula-f75.webp" alt="Product" class="product-image">
+                            <img src="storage/products/aula-f75.webp" alt="Product" class="product-image">
                             <div class="product-category">Bàn phím</div>
                             <h3 class="product-title">Bàn phím cơ Gaming RGB</h3>
                             <div class="review-stars mb-1">
@@ -613,7 +613,7 @@
                             <div class="new-badge">
                                 <i class="fas fa-star me-1"></i>NEW
                             </div>
-                            <img src="uploads/products/chuot-khong-day.jpg" alt="Product" class="product-image">
+                            <img src="storage/products/chuot-khong-day.jpg" alt="Product" class="product-image">
                             <div class="product-category">Chuột</div>
                             <h3 class="product-title">Chuột gaming không dây</h3>
                             <div class="review-stars mb-1">
