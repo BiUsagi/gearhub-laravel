@@ -10,11 +10,11 @@ class ProductImageSeeder extends Seeder
     public function run(): void
     {
         $images = [
-            [1, 'products/aula-f75.webp'],
-            [2, 'products/balo-gaming.png'],
-            [3, 'products/chuot-khong-day.jpg'],
-            [4, 'products/sac-du-phong.webp'],
-            [5, 'products/tai-nghe-gaming-pro.png'],
+            [1, 'products/product-1.png'],
+            [2, 'products/product-2.png'],
+            [3, 'products/product-3.png'],
+            [4, 'products/product-4.png'],
+            [5, 'products/product-5.png'],
         ];
 
         foreach ($images as [$productId, $path]) {
