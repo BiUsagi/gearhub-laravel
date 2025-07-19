@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\ReviewLike;  
 
 class Review extends Model
 {
@@ -31,6 +32,11 @@ class Review extends Model
     public function product()
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(ReviewLike::class);
     }
 
     // Scopes

@@ -307,66 +307,33 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 mb-4">
-                    <div class="review-card fade-in">
-                        <div class="review-stars mb-3">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <p class="review-text">"Chất lượng sản phẩm tuyệt vời, đóng gói cẩn thận. Shop tư vấn nhiệt
-                            tình, sẽ ủng hộ dài dài!"</p>
-                        <div class="review-author d-flex align-items-center">
-                            <img src="storage/user/son-sq.png" alt="Avatar" class="review-avatar">
-                            <div class="ms-3">
-                                <h6 class="mb-1">Nguyễn Văn A</h6>
-                                <small class="text-secondary">Khách hàng thân thiết</small>
+                @foreach ($topReviews as $review)
+                    <div class="col-lg-4 mb-4">
+                        <div class="review-card fade-in">
+                            <div class="review-stars mb-3">
+                                @for ($i = 1; $i <= 5; $i++)
+                                    @if ($i <= $review->rating)
+                                        <i class="fas fa-star"></i>
+                                    @else
+                                        <i class="fa-regular fa-star"></i>
+                                    @endif
+                                @endfor
+                            </div>
+                            <p class="review-text">"{{ $review->comment }}"</p>
+                            <div class="review-author d-flex align-items-center">
+                                <img src="{{ asset('/storage/user/' . $review->user->avatar) }}" alt="Avatar"
+                                    class="review-avatar">
+                                <div class="ms-3">
+                                    <h6 class="mb-1">{{ $review->user->name }}</h6>
+                                    <small class="text-secondary">{{ $review->product->name }}</small>
+                                    <div class="review-likes">
+                                        <i class="fas fa-thumbs-up"></i> {{ $review->likes_count }}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 mb-4">
-                    <div class="review-card fade-in">
-                        <div class="review-stars mb-3">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <p class="review-text">"Giao hàng nhanh, sản phẩm chính hãng 100%. Đặc biệt là chế độ bảo hành
-                            rất tốt!"</p>
-                        <div class="review-author d-flex align-items-center">
-                            <img src="/storage/user/son-sq.png" alt="Avatar" class="review-avatar">
-                            <div class="ms-3">
-                                <h6 class="mb-1">Trần Thị B</h6>
-                                <small class="text-secondary">Đã mua 5 sản phẩm</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 mb-4">
-                    <div class="review-card fade-in">
-                        <div class="review-stars mb-3">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                        <p class="review-text">"Giá cả hợp lý, dịch vụ chăm sóc khách hàng tận tâm. Rất hài lòng với
-                            trải nghiệm mua sắm!"</p>
-                        <div class="review-author d-flex align-items-center">
-                            <img src="/storage/user/son-sq.png" alt="Avatar" class="review-avatar">
-                            <div class="ms-3">
-                                <h6 class="mb-1">Lê Văn C</h6>
-                                <small class="text-secondary">Khách hàng mới</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -384,7 +351,8 @@
                                 <div class="new-badge">
                                     <i class="fas fa-star me-1"></i>NEW
                                 </div>
-                                <img src="storage/products/tai-nghe-gaming-pro.png" alt="Product" class="product-image">
+                                <img src={{ asset('storage/' . $product->mainImage->image_path) }} alt="Product"
+                                    class="product-image">
                                 <div class="product-category">{{ $product->category->name }}</div>
                                 <h3 class="product-title">{{ $product->name }}</h3>
                                 <div class="review-stars mb-1">
@@ -428,48 +396,22 @@
         </div>
     </section>
 
-    <!-- Thương hiệu chính hãng -->
+    <!-- Thương hiệu nổi bật -->
     <section class="brand-showcase">
         <div class="container">
-            <h2 class="section-title">Thương Hiệu Chính Hãng</h2>
+            <h2 class="section-title">Thương Hiệu Nổi Bật</h2>
             <p class="section-subtitle">Đối tác tin cậy từ những thương hiệu công nghệ hàng đầu thế giới</p>
 
             <div class="brand-grid">
-                <div class="brand-card">
-                    <div class="brand-logo">🍎</div>
-                    <div class="brand-name">Apple</div>
-                    <div class="brand-products">MacBook, iPhone, iPad</div>
-                </div>
-
-                <div class="brand-card">
-                    <div class="brand-logo">📱</div>
-                    <div class="brand-name">Samsung</div>
-                    <div class="brand-products">Galaxy, Monitor, SSD</div>
-                </div>
-
-                <div class="brand-card">
-                    <div class="brand-logo">🖱️</div>
-                    <div class="brand-name">Logitech</div>
-                    <div class="brand-products">Mouse, Keyboard, Webcam</div>
-                </div>
-
-                <div class="brand-card">
-                    <div class="brand-logo">🐍</div>
-                    <div class="brand-name">Razer</div>
-                    <div class="brand-products">Gaming Gear, Laptop</div>
-                </div>
-
-                <div class="brand-card">
-                    <div class="brand-logo">💻</div>
-                    <div class="brand-name">ASUS</div>
-                    <div class="brand-products">ROG, Laptop, Monitor</div>
-                </div>
-
-                <div class="brand-card">
-                    <div class="brand-logo">🔥</div>
-                    <div class="brand-name">MSI</div>
-                    <div class="brand-products">Gaming Laptop, GPU</div>
-                </div>
+                @foreach ($brands as $brand)
+                    <div class="brand-card">
+                        <div class="brand-logo">
+                            <img src="{{ asset('storage/brands/' . $brand->logo) }}" alt="{{ $brand->name }}">
+                        </div>
+                        <div class="brand-name">{{ $brand->name }}</div>
+                        <div class="brand-products">{{ $brand->description }}</div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>

@@ -12,11 +12,12 @@ class BrandSeeder extends Seeder
     public function run(): void
     {
         $brands = [
-            ['Sony', 'sony-logo.png', 'Thương hiệu âm thanh và công nghệ hàng đầu đến từ Nhật Bản.'],
-            ['Logitech', 'logitech-logo.png', 'Chuyên về phụ kiện máy tính: chuột, bàn phím, tai nghe,...'],
-            ['Razer', 'razer-logo.png', 'Thương hiệu gaming nổi tiếng với thiết kế độc đáo.'],
-            ['Anker', 'anker-logo.png', 'Pin sạc, cáp sạc, sạc nhanh chất lượng cao.'],
-            ['Ugreen', 'ugreen-logo.png', 'Thiết bị chuyển đổi, cáp, hub USB, dock đa năng.'],
+            ['Samsung', 'samsung-logo.png', 'Smartphone, Tivi, Thiết bị gia dụng'],
+            ['Apple', 'apple-logo.png', 'Laptop, Smartphone, Máy tính bảng'],
+            ['Xiaomi', 'xiaomi-logo.png', 'Smartphone, Thiết bị gia dụng thông minh, Thiết bị đeo'],
+            ['Dell', 'dell-logo.png', 'Laptop, Màn hình, Máy tính để bàn'],
+            ['HP', 'hp-logo.png', 'Máy in, Laptop, Thiết bị văn phòng'],
+            ['Asus', 'asus-logo.png', 'Laptop gaming, Linh kiện máy tính, Màn hình'],
         ];
 
         foreach ($brands as [$name, $logo, $desc]) {

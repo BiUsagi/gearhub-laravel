@@ -6,6 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\ProductImage;
+use App\Models\Review;
+use App\Models\Brand;
+use App\Models\Category;
+
+
 class HomeController extends Controller
 {
     function index()
@@ -32,10 +37,18 @@ class HomeController extends Controller
             ->take(4)
             ->get();
 
-        return view('index', [
-            'saleProducts' => $saleProducts,
-            'bestSelling' => $bestSelling,
-            'newProducts' => $newProducts,
-        ]);
+        // đánh giá nổi bật
+        $topReviews = Review::with('user', 'product')
+            ->withCount('likes')
+            ->where('is_approved', true)
+            ->orderByDesc('likes_count')
+            ->take(3)
+            ->get();
+
+        // thương hiệu nổi bật
+        $brands = Brand::inRandomOrder()->take(6)->get();
+
+
+        return view('index', compact('saleProducts', 'bestSelling', 'newProducts', 'topReviews', 'brands'));
     }
 }
