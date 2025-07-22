@@ -49,6 +49,6 @@ class HomeController extends Controller
         $brands = Brand::inRandomOrder()->take(6)->get();
 
 
-        return view('index', compact('saleProducts', 'bestSelling', 'newProducts', 'topReviews', 'brands'));
+        return view('frontend.home', compact('saleProducts', 'bestSelling', 'newProducts', 'topReviews', 'brands'));
     }
 }
