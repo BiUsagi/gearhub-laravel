@@ -180,17 +180,17 @@ function initAnimations() {
     });
 }
 
-// ===== NAVIGATION - ĐIỀU HƯỚNG =====
+// ===== NAVIGATION =====
 
 // Khởi tạo hệ thống điều hướng
 function initNavigation() {
     // Xử lý các link điều hướng chính
     document.querySelectorAll(".nav-link").forEach((link) => {
         link.addEventListener("click", (e) => {
-            e.preventDefault();
-
-            // Xử lý submenu toggle
+            // Chỉ preventDefault cho các link có submenu
             if (link.classList.contains("has-submenu")) {
+                e.preventDefault();
+
                 const submenuId = link.getAttribute("data-submenu");
                 const submenu = document.getElementById(submenuId);
 
@@ -216,11 +216,13 @@ function initNavigation() {
                     link.classList.add("expanded");
                 }
             } else {
-                // Xử lý nav link thường
+                // Cho phép navigation bình thường cho các link không có submenu
+                // Chỉ cần xử lý active state
                 document
                     .querySelectorAll(".nav-link")
                     .forEach((l) => l.classList.remove("active"));
                 link.classList.add("active");
+                // Không preventDefault - cho phép link hoạt động bình thường
             }
         });
     });
@@ -228,7 +230,13 @@ function initNavigation() {
     // Xử lý các mục submenu
     document.querySelectorAll(".submenu .nav-link").forEach((link) => {
         link.addEventListener("click", (e) => {
-            e.preventDefault();
+            // Chỉ preventDefault nếu link là "#" hoặc không có href thực
+            if (
+                link.getAttribute("href") === "#" ||
+                !link.getAttribute("href")
+            ) {
+                e.preventDefault();
+            }
             e.stopPropagation();
 
             // Xóa active class khỏi tất cả submenu links

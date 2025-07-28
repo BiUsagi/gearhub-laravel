@@ -20,8 +20,8 @@
         <div class="nav-section">
             <div class="nav-section-title">Dashboard</div>
             <div class="nav-item">
-                <a href="{{ route('admin.dashboard') }}"
-                    class="nav-link @if (request()->routeIs('admin.dashboard')) active @endif" data-tooltip="Tổng quan">
+                <a href="/admin/dashboard" class="nav-link @if (request()->is('admin/dashboard') || request()->is('admin')) active @endif"
+                    data-tooltip="Tổng quan">
                     <i class="bi bi-speedometer2"></i>
                     <span>Tổng quan</span>
                 </a>
@@ -40,21 +40,23 @@
 
             <!-- Products -->
             <div class="nav-item">
-                <a href="#" class="nav-link has-submenu" data-submenu="products-submenu" data-tooltip="Sản phẩm">
+                <a href="#" class="nav-link has-submenu @if (request()->is('admin/products*')) expanded @endif"
+                    data-submenu="products-submenu" data-tooltip="Sản phẩm">
                     <i class="bi bi-box-seam"></i>
                     <span>Sản phẩm</span>
                     <span class="badge bg-primary">1.2k</span>
                     <i class="bi bi-chevron-right dropdown-arrow"></i>
                 </a>
-                <div class="submenu" id="products-submenu">
+                <div class="submenu @if (request()->is('admin/products*')) expanded @endif" id="products-submenu">
                     <div class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="/admin/products" class="nav-link @if (request()->is('admin/products') && !request()->is('admin/products/*')) active @endif">
                             <i class="bi bi-list-ul"></i>
                             <span>Danh sách sản phẩm</span>
                         </a>
                     </div>
                     <div class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="/admin/products/create"
+                            class="nav-link @if (request()->is('admin/products/create')) active @endif">
                             <i class="bi bi-plus-circle"></i>
                             <span>Thêm sản phẩm</span>
                         </a>
