@@ -6,13 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
-{ 
+{
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admin.products.index'); 
+        return view('admin.products.index');
     }
 
     /**
@@ -44,7 +44,7 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('admin.products.edit', compact('id'));
     }
 
     /**
@@ -61,5 +61,23 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function importExport()
+    {
+        return view('admin.products.import-export');
+    }
+
+    public function inventory()
+    {
+        return view('admin.products.inventory');
+    }
+    public function attributes()
+    {
+        return view('admin.products.attributes');
+    }
+    public function trash()
+    {
+        return view('admin.products.trash');
     }
 }

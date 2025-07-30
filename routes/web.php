@@ -19,9 +19,17 @@ Route::middleware('auth')->group(function () {
 
 //admin routes
 Route::prefix('admin')->name('admin.')->group(function () {
+    // Dashboard
     Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+
+    // Product routes
     Route::get('/products', [App\Http\Controllers\Admin\ProductController::class, 'index'])->name('products.index');
     Route::get('/products/create', [App\Http\Controllers\Admin\ProductController::class, 'create'])->name('products.create');
+    Route::get('/products/{id}/edit', [App\Http\Controllers\Admin\ProductController::class, 'edit'])->name('products.edit');
+    Route::get('/products/import-export', [App\Http\Controllers\Admin\ProductController::class, 'importExport'])->name('products.import-export');
+    Route::get('/products/inventory', [App\Http\Controllers\Admin\ProductController::class, 'inventory'])->name('products.inventory');
+    Route::get('/products/attributes', [App\Http\Controllers\Admin\ProductController::class, 'attributes'])->name('products.attributes');
+    Route::get('/products/trash', [App\Http\Controllers\Admin\ProductController::class, 'trash'])->name('products.trash');
 
 });
 

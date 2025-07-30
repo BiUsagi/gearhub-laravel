@@ -62,17 +62,41 @@
                         </a>
                     </div>
                     <div class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="bi bi-images"></i>
-                            <span>Thư viện ảnh</span>
+                        <a href="/admin/products/1/edit"
+                            class="nav-link @if (request()->is('admin/products/*/edit')) active @endif">
+                            <i class="bi bi-pencil-square"></i>
+                            <span>Sửa sản phẩm</span>
                         </a>
                     </div>
                     <div class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="bi bi-star"></i>
-                            <span>Sản phẩm nổi bật</span>
+                        <a href="/admin/products/import-export"
+                            class="nav-link @if (request()->is('admin/products/import-export')) active @endif">
+                            <i class="bi bi-arrow-down-up"></i>
+                            <span>Import/Export</span>
                         </a>
                     </div>
+                    <div class="nav-item">
+                        <a href="/admin/products/inventory"
+                            class="nav-link @if (request()->is('admin/products/inventory')) active @endif">
+                            <i class="bi bi-boxes"></i>
+                            <span>Quản lý tồn kho</span>
+                        </a>
+                    </div>
+                    <div class="nav-item">
+                        <a href="/admin/products/attributes"
+                            class="nav-link @if (request()->is('admin/products/attributes')) active @endif">
+                            <i class="bi bi-sliders"></i>
+                            <span>Thuộc tính sản phẩm</span>
+                        </a>
+                    </div>
+                    <div class="nav-item">
+                        <a href="/admin/products/trash"
+                            class="nav-link @if (request()->is('admin/products/trash')) active @endif">
+                            <i class="bi bi-trash"></i>
+                            <span>Thùng rác</span>
+                        </a>
+                    </div>
+
                 </div>
             </div>
 
