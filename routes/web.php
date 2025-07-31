@@ -31,6 +31,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/products/attributes', [App\Http\Controllers\Admin\ProductController::class, 'attributes'])->name('products.attributes');
     Route::get('/products/trash', [App\Http\Controllers\Admin\ProductController::class, 'trash'])->name('products.trash');
 
+    // Category routes
+    Route::get('/categories', [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('categories.index');
+    Route::get('/categories/create', [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('categories.create');
+    Route::get('/categories/{id}/edit', [App\Http\Controllers\Admin\CategoryController::class, 'edit'])->name('categories.edit');
+    Route::get('/categories/tree', [App\Http\Controllers\Admin\CategoryController::class, 'tree'])->name('categories.tree');
+    Route::get('/categories/trash', [App\Http\Controllers\Admin\CategoryController::class, 'trash'])->name('categories.trash');
+    Route::get('/categories/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'show'])->name('categories.show');
 });
 
 require __DIR__ . '/auth.php';

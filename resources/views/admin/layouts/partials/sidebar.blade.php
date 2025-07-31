@@ -102,27 +102,36 @@
 
             <!-- Categories -->
             <div class="nav-item">
-                <a href="#" class="nav-link has-submenu" data-submenu="categories-submenu"
-                    data-tooltip="Danh mục">
+                <a href="" class="nav-link has-submenu @if (request()->is('admin/categories*')) expanded @endif"
+                    data-submenu="categories-submenu" data-tooltip="Danh mục">
                     <i class="bi bi-tags"></i>
                     <span>Danh mục</span>
                     <i class="bi bi-chevron-right dropdown-arrow"></i>
                 </a>
-                <div class="submenu" id="categories-submenu">
+                <div class="submenu @if (request()->is('admin/categories*')) expanded @endif" id="categories-submenu">
                     <div class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="/admin/categories" class="nav-link @if (request()->is('admin/categories')) active @endif">
                             <i class="bi bi-list-ul"></i>
                             <span>Tất cả danh mục</span>
                         </a>
                     </div>
                     <div class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="/admin/categories/create"
+                            class="nav-link @if (request()->is('admin/categories/create')) active @endif">
                             <i class="bi bi-plus-circle"></i>
                             <span>Thêm danh mục</span>
                         </a>
                     </div>
                     <div class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="/admin/categories/1/edit"
+                            class="nav-link @if (request()->is('admin/categories/1/edit')) active @endif">
+                            <i class="bi bi-plus-circle"></i>
+                            <span>Sửa danh mục</span>
+                        </a>
+                    </div>
+                    <div class="nav-item">
+                        <a href="/admin/categories/tree"
+                            class="nav-link @if (request()->is('admin/categories/tree')) active @endif">
                             <i class="bi bi-diagram-3"></i>
                             <span>Cây danh mục</span>
                         </a>

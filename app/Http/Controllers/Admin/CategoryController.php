@@ -12,7 +12,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.categories.index');
     }
 
     /**
@@ -20,7 +20,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.categories.create');
     }
 
     /**
@@ -36,7 +36,7 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('admin.categories.show');
     }
 
     /**
@@ -44,7 +44,7 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('admin.categories.edit');
     }
 
     /**
@@ -61,5 +61,13 @@ class CategoryController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    /**
+     * Display the category tree.
+     */
+    public function tree()
+    {
+        return view('admin.categories.tree');
     }
 }
