@@ -3,531 +3,7 @@
 @section('title', 'Quản Lý Tồn Kho - GearHub Admin')
 
 @push('styles')
-    <style>
-        /* Inventory Management Styles */
-        .inventory-container {
-            padding: 1.5rem 0;
-        }
-
-        .page-header {
-            background: var(--bg-primary);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            border: 1px solid var(--border-color);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .page-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin: 0 0 0.5rem 0;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .page-subtitle {
-            color: var(--text-secondary);
-            margin: 0;
-        }
-
-        .breadcrumb {
-            background: none;
-            padding: 0;
-            margin: 0 0 1rem 0;
-            font-size: 0.875rem;
-        }
-
-        .breadcrumb-item {
-            color: var(--text-secondary);
-        }
-
-        .breadcrumb-item.active {
-            color: var(--primary-color);
-            font-weight: 600;
-        }
-
-        .breadcrumb-item+.breadcrumb-item::before {
-            content: ">";
-            color: var(--text-muted);
-            margin: 0 0.5rem;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .stat-card {
-            background: var(--bg-primary);
-            border-radius: 12px;
-            padding: 1.5rem;
-            border: 1px solid var(--border-color);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px var(--shadow-color);
-        }
-
-        .stat-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-        }
-
-        .stat-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: white !important;
-        }
-
-        .stat-card.total .stat-icon {
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-        }
-
-        .stat-card.low-stock .stat-icon {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-        }
-
-        .stat-card.out-stock .stat-icon {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-        }
-
-        .stat-card.high-stock .stat-icon {
-            background: linear-gradient(135deg, #10b981, #059669);
-        }
-
-        .stat-trend {
-            font-size: 0.875rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-        }
-
-        .stat-trend.up {
-            color: #10b981;
-        }
-
-        .stat-trend.down {
-            color: #ef4444;
-        }
-
-        .stat-value {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-            margin: 0;
-        }
-
-        .filters-section {
-            background: var(--bg-primary);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            border: 1px solid var(--border-color);
-        }
-
-        .filters-title {
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .filters-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .filter-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .filter-label {
-            font-weight: 600;
-            color: var(--text-primary);
-            font-size: 0.875rem;
-        }
-
-        .form-control,
-        .form-select {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-            font-size: 0.875rem;
-            transition: all 0.2s ease;
-        }
-
-        .form-control:focus,
-        .form-select:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px var(--primary-color-alpha);
-        }
-
-        .inventory-table {
-            background: var(--bg-primary);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 1px 3px var(--shadow-color);
-        }
-
-        .table-header {
-            background: var(--bg-secondary);
-            padding: 1.5rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .table-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin: 0;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .table-wrapper {
-            overflow-x: auto;
-        }
-
-        .inventory-data-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .inventory-data-table th,
-        .inventory-data-table td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .inventory-data-table th {
-            background: var(--bg-secondary);
-            font-weight: 600;
-            color: var(--text-primary);
-            font-size: 0.875rem;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-
-        .inventory-data-table td {
-            color: var(--text-primary);
-            font-size: 0.875rem;
-            vertical-align: middle;
-        }
-
-        .inventory-data-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .inventory-data-table tbody tr:hover {
-            background: var(--primary-color-alpha);
-        }
-
-        .product-info {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .product-image {
-            width: 48px;
-            height: 48px;
-            border-radius: 8px;
-            object-fit: cover;
-            border: 1px solid var(--border-color);
-        }
-
-        .product-details h6 {
-            margin: 0 0 0.25rem 0;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .product-details p {
-            margin: 0;
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-        }
-
-        .stock-level {
-            font-weight: 600;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            text-align: center;
-            min-width: 80px;
-        }
-
-        .stock-level.high {
-            background: rgba(16, 185, 129, 0.1);
-            color: #10b981;
-        }
-
-        .stock-level.medium {
-            background: rgba(245, 158, 11, 0.1);
-            color: #f59e0b;
-        }
-
-        .stock-level.low {
-            background: rgba(239, 68, 68, 0.1);
-            color: #ef4444;
-        }
-
-        .stock-level.out {
-            background: rgba(107, 114, 128, 0.1);
-            color: #6b7280;
-        }
-
-        .quantity-input {
-            width: 60px;
-            padding: 0.5rem;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-            font-size: 0.875rem;
-            text-align: center;
-            font-weight: 600;
-        }
-
-        .stock-info {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .stock-unit {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        .min-stock {
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-            padding: 0.25rem 0.5rem;
-            background: var(--bg-secondary);
-            border-radius: 4px;
-            font-weight: 500;
-        }
-
-        .btn-danger {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-            color: white;
-            box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
-        }
-
-        .btn-danger:hover {
-            background: linear-gradient(135deg, #dc2626, #b91c1c);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
-        }
-
-        .btn {
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 0.75rem;
-            border: none;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.25rem;
-            text-decoration: none;
-        }
-
-        .btn-sm {
-            padding: 0.375rem 0.75rem;
-            font-size: 0.75rem;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            color: white;
-            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
-        }
-
-        .btn-primary:hover {
-            background: linear-gradient(135deg, #5b21b6, #7c3aed);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
-        }
-
-        .btn-success {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
-        }
-
-        .btn-success:hover {
-            background: linear-gradient(135deg, #059669, #047857);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
-        }
-
-        .btn-warning {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            color: white;
-            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
-        }
-
-        .btn-warning:hover {
-            background: linear-gradient(135deg, #d97706, #b45309);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--primary-color);
-            border: 1px solid var(--primary-color);
-        }
-
-        .btn-outline:hover {
-            background: var(--primary-color);
-            color: white;
-            transform: translateY(-1px);
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 0.5rem;
-            justify-content: flex-end;
-        }
-
-        .pagination {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 2rem;
-        }
-
-        .pagination .btn {
-            min-width: 40px;
-            justify-content: center;
-        }
-
-        .alert {
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            border: 1px solid;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .alert-warning {
-            background: rgba(245, 158, 11, 0.1);
-            border-color: #f59e0b;
-            color: #f59e0b;
-        }
-
-        .alert-danger {
-            background: rgba(239, 68, 68, 0.1);
-            border-color: #ef4444;
-            color: #ef4444;
-        }
-
-        .alert-info {
-            background: rgba(59, 130, 246, 0.1);
-            border-color: #3b82f6;
-            color: #3b82f6;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .stats-grid {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            }
-
-            .filters-grid {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            }
-        }
-
-        @media (max-width: 768px) {
-            .inventory-container {
-                padding: 1rem 0;
-            }
-
-            .page-header {
-                padding: 1rem;
-            }
-
-            .filters-section {
-                padding: 1rem;
-            }
-
-            .filters-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .inventory-data-table {
-                font-size: 0.75rem;
-            }
-
-            .inventory-data-table th,
-            .inventory-data-table td {
-                padding: 0.75rem 0.5rem;
-            }
-
-            .product-info {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
-            }
-
-            .action-buttons {
-                flex-direction: column;
-                gap: 0.25rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/admin/products/inventory.css') }}">
 @endpush
 
 @section('content')
@@ -735,7 +211,8 @@
                                     <button class="btn btn-sm btn-success" title="Nhập kho">
                                         <i class="bi bi-plus-circle"></i>
                                     </button>
-                                    <button class="btn btn-sm btn-primary" title="Điều chỉnh">
+                                    <button class="btn btn-sm btn-primary" title="Cài đặt sản phẩm"
+                                        onclick="showProductSettingsModal('IP15PM-256-TN', 'iPhone 15 Pro Max 256GB', 45, 10, '{{ asset('storage/products/product-1.png') }}')">
                                         <i class="bi bi-gear"></i>
                                     </button>
                                 </div>
@@ -767,7 +244,8 @@
                                     <button class="btn btn-sm btn-warning" title="Nhập kho gấp">
                                         <i class="bi bi-exclamation-triangle"></i>
                                     </button>
-                                    <button class="btn btn-sm btn-primary" title="Điều chỉnh">
+                                    <button class="btn btn-sm btn-primary" title="Cài đặt sản phẩm"
+                                        onclick="showProductSettingsModal('MBP-M3-14-512', 'MacBook Pro M3 14', 12, 5, '{{ asset('storage/products/product-2.png') }}')">
                                         <i class="bi bi-gear"></i>
                                     </button>
                                 </div>
@@ -799,7 +277,8 @@
                                     <button class="btn btn-sm btn-warning" title="Nhập kho gấp">
                                         <i class="bi bi-exclamation-triangle-fill"></i>
                                     </button>
-                                    <button class="btn btn-sm btn-primary" title="Điều chỉnh">
+                                    <button class="btn btn-sm btn-primary" title="Cài đặt sản phẩm"
+                                        onclick="showProductSettingsModal('APP-G2-USBC', 'AirPods Pro Gen 2', 3, 15, '{{ asset('storage/products/product-3.png') }}')">
                                         <i class="bi bi-gear"></i>
                                     </button>
                                 </div>
@@ -831,7 +310,8 @@
                                     <button class="btn btn-sm btn-danger" title="Nhập kho ngay">
                                         <i class="bi bi-plus-circle-fill"></i>
                                     </button>
-                                    <button class="btn btn-sm btn-primary" title="Điều chỉnh">
+                                    <button class="btn btn-sm btn-primary" title="Cài đặt sản phẩm"
+                                        onclick="showProductSettingsModal('GS24U-512-PB', 'Galaxy S24 Ultra 512GB', 0, 8, '{{ asset('storage/products/product-4.png') }}')">
                                         <i class="bi bi-gear"></i>
                                     </button>
                                 </div>
@@ -863,7 +343,8 @@
                                     <button class="btn btn-sm btn-success" title="Nhập kho">
                                         <i class="bi bi-plus-circle"></i>
                                     </button>
-                                    <button class="btn btn-sm btn-primary" title="Điều chỉnh">
+                                    <button class="btn btn-sm btn-primary" title="Cài đặt sản phẩm"
+                                        onclick="showProductSettingsModal('IPDP-M4-11-256', 'iPad Pro M4 11', 18, 6, '{{ asset('storage/products/product-5.png') }}')">
                                         <i class="bi bi-gear"></i>
                                     </button>
                                 </div>
@@ -895,7 +376,8 @@
                                     <button class="btn btn-sm btn-warning" title="Nhập kho gấp">
                                         <i class="bi bi-exclamation-triangle-fill"></i>
                                     </button>
-                                    <button class="btn btn-sm btn-primary" title="Điều chỉnh">
+                                    <button class="btn btn-sm btn-primary" title="Cài đặt sản phẩm"
+                                        onclick="showProductSettingsModal('SONY-WH1000XM5', 'Sony WH-1000XM5', 5, 12, '{{ asset('storage/products/product-2.png') }}')">
                                         <i class="bi bi-gear"></i>
                                     </button>
                                 </div>
@@ -919,6 +401,261 @@
             <button class="btn btn-outline">
                 <i class="bi bi-chevron-right"></i>
             </button>
+        </div>
+    </div>
+
+    <!-- Product Settings Modal -->
+    <div class="modal fade" id="productSettingsModal" tabindex="-1" aria-labelledby="productSettingsModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content"
+                style="background: var(--card-bg); border: 2px solid var(--border-color); border-radius: 16px;">
+                <div class="modal-header"
+                    style="background: var(--card-bg); border-bottom: 2px solid var(--border-color); padding: 2rem;">
+                    <h5 class="modal-title" id="productSettingsModalLabel"
+                        style="color: var(--text-primary); font-weight: 700; font-size: 1.5rem;">
+                        <i class="bi bi-gear me-2" style="color: var(--primary-color);"></i>
+                        Cài đặt sản phẩm
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="bi bi-x"></i>
+                    </button>
+                </div>
+                <div class="modal-body" style="background: var(--card-bg); padding: 2rem;">
+                    <!-- Product Info -->
+                    <div class="product-info-card"
+                        style="background: var(--bg-secondary); border: 2px solid var(--border-color); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="product-avatar"
+                                style="width: 64px; height: 64px; border-radius: 12px; margin-right: 1rem; overflow: hidden; border: 2px solid var(--border-color);">
+                                <img id="modalProductImage" src="" alt="Product Image"
+                                    style="width: 100%; height: 100%; object-fit: cover; display: block;"
+                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="fallback-icon"
+                                    style="width: 100%; height: 100%; background: var(--primary-gradient); display: none; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+                                    <i class="bi bi-box-seam"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <h6 class="mb-1" id="modalProductName"
+                                    style="color: var(--text-primary); font-weight: 600; font-size: 1.1rem;"></h6>
+                                <p class="mb-0" id="modalProductSKU"
+                                    style="color: var(--text-secondary); font-size: 0.875rem;"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="text-center">
+                                    <div class="fw-bold text-primary" id="modalCurrentStock" style="font-size: 1.25rem;">
+                                    </div>
+                                    <small class="text-muted">Tồn kho hiện tại</small>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="text-center">
+                                    <div class="fw-bold text-warning" id="modalMinStock" style="font-size: 1.25rem;">
+                                    </div>
+                                    <small class="text-muted">Mức tối thiểu</small>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="text-center">
+                                    <div class="fw-bold text-success" style="font-size: 1.25rem;">Good</div>
+                                    <small class="text-muted">Trạng thái</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Settings Tabs -->
+                    <ul class="nav nav-tabs mb-4" id="settingsTabs" role="tablist"
+                        style="border-bottom: 2px solid var(--border-color);">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="inventory-tab" data-bs-toggle="tab"
+                                data-bs-target="#inventory-pane" type="button" role="tab"
+                                style="color: var(--text-primary); border: none; background: none; padding: 1rem 1.5rem; font-weight: 600;">
+                                <i class="bi bi-boxes me-2"></i>Quản lý tồn kho
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="alerts-tab" data-bs-toggle="tab" data-bs-target="#alerts-pane"
+                                type="button" role="tab"
+                                style="color: var(--text-secondary); border: none; background: none; padding: 1rem 1.5rem; font-weight: 600;">
+                                <i class="bi bi-bell me-2"></i>Cảnh báo
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="history-tab" data-bs-toggle="tab"
+                                data-bs-target="#history-pane" type="button" role="tab"
+                                style="color: var(--text-secondary); border: none; background: none; padding: 1rem 1.5rem; font-weight: 600;">
+                                <i class="bi bi-clock-history me-2"></i>Lịch sử
+                            </button>
+                        </li>
+                    </ul>
+
+                    <!-- Tab Content -->
+                    <div class="tab-content" id="settingsTabContent">
+                        <!-- Inventory Management Tab -->
+                        <div class="tab-pane fade show active" id="inventory-pane" role="tabpanel">
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label fw-semibold"
+                                            style="color: var(--text-primary); margin-bottom: 0.5rem;">
+                                            <i class="bi bi-hash me-1"></i>Số lượng hiện tại
+                                        </label>
+                                        <div class="input-group">
+                                            <input type="number" class="form-control" id="currentQuantity"
+                                                style="background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-primary); padding: 0.75rem;">
+                                            <span class="input-group-text"
+                                                style="background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-secondary);">chiếc</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label fw-semibold"
+                                            style="color: var(--text-primary); margin-bottom: 0.5rem;">
+                                            <i class="bi bi-exclamation-triangle me-1"></i>Mức tồn kho tối thiểu
+                                        </label>
+                                        <div class="input-group">
+                                            <input type="number" class="form-control" id="minQuantity"
+                                                style="background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-primary); padding: 0.75rem;">
+                                            <span class="input-group-text"
+                                                style="background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-secondary);">chiếc</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label fw-semibold"
+                                            style="color: var(--text-primary); margin-bottom: 0.5rem;">
+                                            <i class="bi bi-plus-circle me-1"></i>Nhập thêm kho
+                                        </label>
+                                        <div class="input-group">
+                                            <input type="number" class="form-control" id="addQuantity" placeholder="0"
+                                                min="0"
+                                                style="background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-primary); padding: 0.75rem;">
+                                            <button class="btn btn-success" type="button" onclick="addStock()">
+                                                <i class="bi bi-plus-lg me-1"></i>Nhập
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label fw-semibold"
+                                            style="color: var(--text-primary); margin-bottom: 0.5rem;">
+                                            <i class="bi bi-dash-circle me-1"></i>Xuất kho
+                                        </label>
+                                        <div class="input-group">
+                                            <input type="number" class="form-control" id="removeQuantity"
+                                                placeholder="0" min="0"
+                                                style="background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-primary); padding: 0.75rem;">
+                                            <button class="btn btn-warning" type="button" onclick="removeStock()">
+                                                <i class="bi bi-dash-lg me-1"></i>Xuất
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Quick Actions -->
+                            <div class="mt-4">
+                                <h6 style="color: var(--text-primary); margin-bottom: 1rem;">
+                                    <i class="bi bi-lightning me-2"></i>Thao tác nhanh
+                                </h6>
+                                <div class="d-flex gap-2 flex-wrap">
+                                    <button class="btn btn-outline-primary btn-sm" onclick="quickAdd(10)">+10</button>
+                                    <button class="btn btn-outline-primary btn-sm" onclick="quickAdd(20)">+20</button>
+                                    <button class="btn btn-outline-primary btn-sm" onclick="quickAdd(50)">+50</button>
+                                    <button class="btn btn-outline-primary btn-sm" onclick="quickAdd(100)">+100</button>
+                                    <button class="btn btn-outline-warning btn-sm" onclick="setMinStock()">Đặt mức tối
+                                        thiểu</button>
+                                    <button class="btn btn-outline-danger btn-sm" onclick="zeroStock()">Đặt về 0</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Alerts Tab -->
+                        <div class="tab-pane fade" id="alerts-pane" role="tabpanel">
+                            <div class="alert-settings">
+                                <h6 style="color: var(--text-primary); margin-bottom: 1rem;">
+                                    <i class="bi bi-bell me-2"></i>Cài đặt cảnh báo
+                                </h6>
+                                <div class="form-check form-switch mb-3">
+                                    <input class="form-check-input" type="checkbox" id="lowStockAlert" checked>
+                                    <label class="form-check-label" for="lowStockAlert"
+                                        style="color: var(--text-primary);">
+                                        Cảnh báo khi sắp hết hàng
+                                    </label>
+                                </div>
+                                <div class="form-check form-switch mb-3">
+                                    <input class="form-check-input" type="checkbox" id="outOfStockAlert" checked>
+                                    <label class="form-check-label" for="outOfStockAlert"
+                                        style="color: var(--text-primary);">
+                                        Cảnh báo khi hết hàng
+                                    </label>
+                                </div>
+                                <div class="form-check form-switch mb-3">
+                                    <input class="form-check-input" type="checkbox" id="emailAlert">
+                                    <label class="form-check-label" for="emailAlert" style="color: var(--text-primary);">
+                                        Gửi email thông báo
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- History Tab -->
+                        <div class="tab-pane fade" id="history-pane" role="tabpanel">
+                            <h6 style="color: var(--text-primary); margin-bottom: 1rem;">
+                                <i class="bi bi-clock-history me-2"></i>Lịch sử nhập xuất
+                            </h6>
+                            <div class="history-list" style="max-height: 300px; overflow-y: auto;">
+                                <div class="history-item d-flex justify-content-between align-items-center py-2 border-bottom"
+                                    style="border-color: var(--border-color) !important;">
+                                    <div>
+                                        <div style="color: var(--text-primary); font-weight: 600;">
+                                            <i class="bi bi-plus-circle text-success me-2"></i>Nhập kho +50 chiếc
+                                        </div>
+                                        <small style="color: var(--text-secondary);">28/07/2025 14:30</small>
+                                    </div>
+                                    <span class="badge bg-success">Nhập kho</span>
+                                </div>
+                                <div class="history-item d-flex justify-content-between align-items-center py-2 border-bottom"
+                                    style="border-color: var(--border-color) !important;">
+                                    <div>
+                                        <div style="color: var(--text-primary); font-weight: 600;">
+                                            <i class="bi bi-dash-circle text-warning me-2"></i>Bán hàng -12 chiếc
+                                        </div>
+                                        <small style="color: var(--text-secondary);">27/07/2025 09:15</small>
+                                    </div>
+                                    <span class="badge bg-warning">Bán hàng</span>
+                                </div>
+                                <div class="history-item d-flex justify-content-between align-items-center py-2 border-bottom"
+                                    style="border-color: var(--border-color) !important;">
+                                    <div>
+                                        <div style="color: var(--text-primary); font-weight: 600;">
+                                            <i class="bi bi-gear text-info me-2"></i>Điều chỉnh mức tối thiểu: 10 → 15
+                                        </div>
+                                        <small style="color: var(--text-secondary);">25/07/2025 16:20</small>
+                                    </div>
+                                    <span class="badge bg-info">Điều chỉnh</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer"
+                    style="background: var(--card-bg); border-top: 2px solid var(--border-color); padding: 2rem;">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        <i class="bi bi-x me-2"></i>Hủy
+                    </button>
+                    <button type="button" class="btn btn-success" onclick="saveSettings()">
+                        <i class="bi bi-check-lg me-2"></i>Lưu thay đổi
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
@@ -962,6 +699,161 @@
                         showNotification('Chỉnh sửa thông tin sản phẩm', 'info');
                     });
                 }
+            });
+
+            // Product Settings Modal Functions
+            window.showProductSettingsModal = function(sku, name, currentStock, minStock, imageSrc) {
+                // Fill modal data
+                document.getElementById('modalProductName').textContent = name;
+                document.getElementById('modalProductSKU').textContent = `SKU: ${sku}`;
+                document.getElementById('modalCurrentStock').textContent = currentStock + ' chiếc';
+                document.getElementById('modalMinStock').textContent = minStock + ' chiếc';
+                document.getElementById('currentQuantity').value = currentStock;
+                document.getElementById('minQuantity').value = minStock;
+
+                // Set product image
+                const modalImage = document.getElementById('modalProductImage');
+                if (imageSrc) {
+                    modalImage.src = imageSrc;
+                    modalImage.style.display = 'block';
+                    modalImage.nextElementSibling.style.display = 'none';
+                } else {
+                    modalImage.style.display = 'none';
+                    modalImage.nextElementSibling.style.display = 'flex';
+                }
+
+                // Clear input fields
+                document.getElementById('addQuantity').value = '';
+                document.getElementById('removeQuantity').value = '';
+
+                // Store current data
+                window.currentProductData = {
+                    sku: sku,
+                    name: name,
+                    currentStock: parseInt(currentStock),
+                    minStock: parseInt(minStock)
+                };
+
+                // Show modal
+                const modal = new bootstrap.Modal(document.getElementById('productSettingsModal'));
+                modal.show();
+            };
+
+            // Quick add functions
+            window.quickAdd = function(amount) {
+                const currentQty = parseInt(document.getElementById('currentQuantity').value) || 0;
+                const newQty = currentQty + amount;
+                document.getElementById('currentQuantity').value = newQty;
+                document.getElementById('modalCurrentStock').textContent = newQty + ' chiếc';
+                showNotification(`Đã thêm ${amount} sản phẩm vào kho`, 'success');
+            };
+
+            window.addStock = function() {
+                const addAmount = parseInt(document.getElementById('addQuantity').value) || 0;
+                if (addAmount <= 0) {
+                    showNotification('Vui lòng nhập số lượng hợp lệ', 'warning');
+                    return;
+                }
+                const currentQty = parseInt(document.getElementById('currentQuantity').value) || 0;
+                const newQty = currentQty + addAmount;
+                document.getElementById('currentQuantity').value = newQty;
+                document.getElementById('modalCurrentStock').textContent = newQty + ' chiếc';
+                document.getElementById('addQuantity').value = '';
+                showNotification(`Đã nhập thêm ${addAmount} sản phẩm vào kho`, 'success');
+            };
+
+            window.removeStock = function() {
+                const removeAmount = parseInt(document.getElementById('removeQuantity').value) || 0;
+                const currentQty = parseInt(document.getElementById('currentQuantity').value) || 0;
+
+                if (removeAmount <= 0) {
+                    showNotification('Vui lòng nhập số lượng hợp lệ', 'warning');
+                    return;
+                }
+
+                if (removeAmount > currentQty) {
+                    showNotification('Không thể xuất nhiều hơn số lượng hiện có', 'warning');
+                    return;
+                }
+
+                const newQty = currentQty - removeAmount;
+                document.getElementById('currentQuantity').value = newQty;
+                document.getElementById('modalCurrentStock').textContent = newQty + ' chiếc';
+                document.getElementById('removeQuantity').value = '';
+                showNotification(`Đã xuất ${removeAmount} sản phẩm khỏi kho`, 'success');
+            };
+
+            window.setMinStock = function() {
+                const currentQty = parseInt(document.getElementById('currentQuantity').value) || 0;
+                document.getElementById('minQuantity').value = currentQty;
+                document.getElementById('modalMinStock').textContent = currentQty + ' chiếc';
+                showNotification('Đã đặt mức tối thiểu bằng số lượng hiện tại', 'info');
+            };
+
+            window.zeroStock = function() {
+                if (confirm('Bạn có chắc chắn muốn đặt số lượng về 0?')) {
+                    document.getElementById('currentQuantity').value = 0;
+                    document.getElementById('modalCurrentStock').textContent = '0 chiếc';
+                    showNotification('Đã đặt số lượng tồn kho về 0', 'warning');
+                }
+            };
+
+            window.saveSettings = function() {
+                const newQty = parseInt(document.getElementById('currentQuantity').value) || 0;
+                const newMinQty = parseInt(document.getElementById('minQuantity').value) || 0;
+                const productData = window.currentProductData;
+
+                // Update the table row
+                const rows = document.querySelectorAll('tbody tr');
+                rows.forEach(row => {
+                    const skuCell = row.querySelector('td:nth-child(2) strong');
+                    if (skuCell && skuCell.textContent === productData.sku) {
+                        // Update quantity input
+                        const qtyInput = row.querySelector('.quantity-input');
+                        qtyInput.value = newQty;
+
+                        // Update min stock display
+                        const minStockSpan = row.querySelector('.min-stock');
+                        minStockSpan.textContent = newMinQty;
+
+                        // Update status
+                        const statusSpan = row.querySelector('.stock-level');
+                        if (newQty === 0) {
+                            statusSpan.className = 'stock-level out';
+                            statusSpan.textContent = 'Hết hàng';
+                        } else if (newQty <= newMinQty) {
+                            statusSpan.className = 'stock-level low';
+                            statusSpan.textContent = 'Sắp hết';
+                        } else if (newQty <= newMinQty * 2) {
+                            statusSpan.className = 'stock-level medium';
+                            statusSpan.textContent = 'Ít hàng';
+                        } else {
+                            statusSpan.className = 'stock-level high';
+                            statusSpan.textContent = 'Còn hàng';
+                        }
+                    }
+                });
+
+                // Close modal
+                const modal = bootstrap.Modal.getInstance(document.getElementById('productSettingsModal'));
+                modal.hide();
+
+                showNotification('Đã lưu cài đặt sản phẩm thành công!', 'success');
+            };
+
+            // Tab styling
+            document.querySelectorAll('#settingsTabs .nav-link').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active styles from all tabs
+                    document.querySelectorAll('#settingsTabs .nav-link').forEach(t => {
+                        t.style.color = 'var(--text-secondary)';
+                        t.style.borderBottom = 'none';
+                    });
+
+                    // Add active style to clicked tab
+                    this.style.color = 'var(--primary-color)';
+                    this.style.borderBottom = '3px solid var(--primary-color)';
+                });
             });
 
             document.querySelectorAll('.btn-success').forEach(btn => {

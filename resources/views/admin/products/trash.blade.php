@@ -2,383 +2,36 @@
 
 @section('title', 'Thùng rác sản phẩm')
 @push('styles')
-    <style>
-        /* Product Index Styles - Copied from index.blade.php */
-        .product-header {
-            background: var(--bg-primary);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            border: 1px solid var(--border-color);
-        }
-
-        .product-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .stat-card {
-            background: var(--bg-primary);
-            border-radius: 12px;
-            padding: 1.5rem;
-            border: 1px solid var(--border-color);
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px var(--shadow-color);
-        }
-
-        .stat-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--primary-gradient);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            font-size: 1.5rem;
-            color: white;
-        }
-
-        .stat-value {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-        }
-
-        .products-table-container {
-            background: var(--bg-primary);
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            overflow: hidden;
-        }
-
-        .table-header {
-            padding: 1.5rem;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .table-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin: 0;
-        }
-
-        .table-filters {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .filter-select,
-        .filter-input {
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-            font-size: 0.875rem;
-        }
-
-        .filter-select:focus,
-        .filter-input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px var(--primary-color-alpha);
-        }
-
-        .products-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .products-table th,
-        .products-table td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .products-table th {
-            background: var(--bg-secondary);
-            font-weight: 600;
-            color: var(--text-primary);
-            font-size: 0.875rem;
-        }
-
-        .products-table td {
-            color: var(--text-secondary);
-            vertical-align: middle;
-        }
-
-        .product-info {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .product-image {
-            width: 60px;
-            height: 60px;
-            border-radius: 8px;
-            object-fit: cover;
-            border: 1px solid var(--border-color);
-        }
-
-        .product-details h6 {
-            margin: 0;
-            font-weight: 600;
-            color: var(--text-primary);
-            font-size: 0.9rem;
-        }
-
-        .product-sku {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            margin-top: 0.25rem;
-        }
-
-        .product-price {
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .status-badge {
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .status-active {
-            background: rgba(34, 197, 94, 0.1);
-            color: #22c55e;
-        }
-
-        .status-inactive {
-            background: rgba(239, 68, 68, 0.1);
-            color: #ef4444;
-        }
-
-        .status-out-of-stock {
-            background: rgba(245, 158, 11, 0.1);
-            color: #f59e0b;
-        }
-
-        .stock-badge {
-            padding: 0.25rem 0.5rem;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
-
-        .stock-high {
-            background: rgba(34, 197, 94, 0.1);
-            color: #22c55e;
-        }
-
-        .stock-medium {
-            background: rgba(245, 158, 11, 0.1);
-            color: #f59e0b;
-        }
-
-        .stock-low {
-            background: rgba(239, 68, 68, 0.1);
-            color: #ef4444;
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .btn-action {
-            width: 32px;
-            height: 32px;
-            border: 1px solid var(--border-color);
-            background: var(--bg-secondary);
-            color: var(--text-secondary);
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
-            cursor: pointer;
-        }
-
-        .btn-action:hover {
-            background: var(--bg-tertiary);
-            color: var(--text-primary);
-            transform: translateY(-1px);
-        }
-
-        .btn-edit:hover {
-            background: rgba(34, 197, 94, 0.1);
-            border-color: #22c55e;
-            color: #22c55e;
-        }
-
-        .btn-delete:hover {
-            background: rgba(239, 68, 68, 0.1);
-            border-color: #ef4444;
-            color: #ef4444;
-        }
-
-        /* Modal styles - Fixed transparency issues */
-        .modal-backdrop {
-            background-color: rgba(0, 0, 0, 0.8) !important;
-        }
-
-        .modal-content {
-            background: var(--bg-primary) !important;
-            border: 2px solid var(--border-color) !important;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5) !important;
-            border-radius: 12px !important;
-        }
-
-        .modal-header {
-            border-bottom: 2px solid var(--border-color) !important;
-            background: var(--bg-primary) !important;
-            padding: 1.5rem !important;
-        }
-
-        .modal-body {
-            background: var(--bg-primary) !important;
-            padding: 1.5rem !important;
-        }
-
-        .modal-footer {
-            border-top: 2px solid var(--border-color) !important;
-            background: var(--bg-primary) !important;
-            padding: 1.5rem !important;
-        }
-
-        .modal-title {
-            color: var(--text-primary) !important;
-            font-weight: 600 !important;
-        }
-
-        .alert {
-            border: none !important;
-            border-radius: 8px !important;
-            padding: 1rem !important;
-            margin-bottom: 1rem !important;
-        }
-
-        .alert-danger {
-            background: rgba(239, 68, 68, 0.2) !important;
-            color: #dc3545 !important;
-            border: 1px solid rgba(239, 68, 68, 0.3) !important;
-        }
-
-        .alert-info {
-            background: rgba(59, 130, 246, 0.2) !important;
-            color: #0d6efd !important;
-            border: 1px solid rgba(59, 130, 246, 0.3) !important;
-        }
-
-        .product-preview {
-            background: var(--bg-secondary) !important;
-            border: 2px solid var(--border-color) !important;
-            border-radius: 8px !important;
-            padding: 1rem !important;
-        }
-
-        /* Dark mode modal adjustments */
-        [data-theme="dark"] .modal-content {
-            background: #1a1d29 !important;
-            border: 2px solid #2d3748 !important;
-        }
-
-        [data-theme="dark"] .modal-header,
-        [data-theme="dark"] .modal-body,
-        [data-theme="dark"] .modal-footer {
-            background: #1a1d29 !important;
-        }
-
-        [data-theme="dark"] .product-preview {
-            background: #2d3748 !important;
-            border: 2px solid #4a5568 !important;
-        }
-
-        /* Filters card */
-        .filters-card {
-            background: var(--bg-primary);
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            margin-bottom: 1.5rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .table-filters {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .filter-select,
-            .filter-input {
-                width: 100%;
-            }
-
-            .products-table {
-                font-size: 0.875rem;
-            }
-
-            .product-info {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
-            }
-
-            .product-image {
-                width: 50px;
-                height: 50px;
-            }
-
-            .action-buttons {
-                flex-direction: column;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/admin/products/trash.css') }}">
 @endpush
+
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid p-3">
+        {{-- Breadcrumb --}}
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="/admin/products">Sản Phẩm</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Thùng rác</li>
+            </ol>
+        </nav>
         <!-- Header Section -->
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <div>
-                <h1 class="h3 mb-1" style="color: var(--text-primary);">Thùng rác sản phẩm</h1>
-                <p class="text-muted mb-0">Quản lý các sản phẩm đã xóa</p>
-            </div>
-            <div class="d-flex gap-2">
-                <button class="btn btn-outline-danger" onclick="showEmptyTrashModal()">
-                    <i class="bi bi-trash3"></i>
-                    Làm trống thùng rác
-                </button>
-                <a href="/admin/products" class="btn btn-outline-primary">
-                    <i class="bi bi-arrow-left"></i>
-                    Quay lại danh sách
-                </a>
+        <div class="trash-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h1 class="h3 mb-1" style="color: var(--text-primary);">Thùng rác sản phẩm</h1>
+                    <p class="text-muted mb-0">Quản lý các sản phẩm đã xóa</p>
+                </div>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-outline-danger" onclick="showEmptyTrashModal()">
+                        <i class="bi bi-trash3"></i>
+                        Làm trống thùng rác
+                    </button>
+                    <a href="/admin/products" class="btn btn-outline-primary">
+                        <i class="bi bi-arrow-left"></i>
+                        Quay lại danh sách
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -543,7 +196,7 @@
                             <td>
                                 <div class="d-flex align-items-center">
                                     <div class="product-image me-3">
-                                        <img src="https://via.placeholder.com/50x50/6c757d/ffffff?text=IMG" alt="Product"
+                                        <img src="{{ asset('storage/products/product-4.png') }}" alt="Product"
                                             class="rounded" style="width: 50px; height: 50px; object-fit: cover;">
                                     </div>
                                     <div>
@@ -599,7 +252,7 @@
                             <td>
                                 <div class="d-flex align-items-center">
                                     <div class="product-image me-3">
-                                        <img src="https://via.placeholder.com/50x50/6c757d/ffffff?text=IMG" alt="Product"
+                                        <img src="{{ asset('storage/products/product-2.png') }}" alt="Product"
                                             class="rounded" style="width: 50px; height: 50px; object-fit: cover;">
                                     </div>
                                     <div>
@@ -654,7 +307,7 @@
                             <td>
                                 <div class="d-flex align-items-center">
                                     <div class="product-image me-3">
-                                        <img src="https://via.placeholder.com/50x50/6c757d/ffffff?text=IMG" alt="Product"
+                                        <img src="{{ asset('storage/products/product-3.png') }}" alt="Product"
                                             class="rounded" style="width: 50px; height: 50px; object-fit: cover;">
                                     </div>
                                     <div>
@@ -709,7 +362,7 @@
                             <td>
                                 <div class="d-flex align-items-center">
                                     <div class="product-image me-3">
-                                        <img src="https://via.placeholder.com/50x50/6c757d/ffffff?text=IMG" alt="Product"
+                                        <img src="{{ asset('storage/products/product-4.png') }}" alt="Product"
                                             class="rounded" style="width: 50px; height: 50px; object-fit: cover;">
                                     </div>
                                     <div>
@@ -764,7 +417,7 @@
                             <td>
                                 <div class="d-flex align-items-center">
                                     <div class="product-image me-3">
-                                        <img src="https://via.placeholder.com/50x50/6c757d/ffffff?text=IMG" alt="Product"
+                                        <img src="{{ asset('storage/products/product-5.png') }}" alt="Product"
                                             class="rounded" style="width: 50px; height: 50px; object-fit: cover;">
                                     </div>
                                     <div>
@@ -812,35 +465,24 @@
         </div>
     </div>
 
-    <!-- Pagination -->
-    <div class="d-flex justify-content-between align-items-center mt-4">
-        <div class="text-muted">
-            Hiển thị 1-5 trong tổng số 47 sản phẩm
+    {{-- Pagination - Phân trang --}}
+    <div class="pagination-container">
+        <div class="pagination-info">
+            Hiển thị <strong>1-5</strong> trong tổng số <strong>47</strong> sản phẩm đã xóa
         </div>
-        <nav>
-            <ul class="pagination pagination-sm mb-0">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#"
-                        style="background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-secondary);">Trước</a>
-                </li>
-                <li class="page-item active">
-                    <a class="page-link" href="#"
-                        style="background: var(--primary-color); border: 1px solid var(--primary-color); color: white;">1</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#"
-                        style="background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-primary);">2</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#"
-                        style="background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-primary);">3</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#"
-                        style="background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-primary);">Sau</a>
-                </li>
-            </ul>
-        </nav>
+        <div class="pagination-nav">
+            <a href="#" class="page-btn" title="Trang trước">
+                <i class="bi bi-chevron-left"></i>
+            </a>
+            <a href="#" class="page-btn active">1</a>
+            <a href="#" class="page-btn">2</a>
+            <a href="#" class="page-btn">3</a>
+            <a href="#" class="page-btn">...</a>
+            <a href="#" class="page-btn">10</a>
+            <a href="#" class="page-btn" title="Trang sau">
+                <i class="bi bi-chevron-right"></i>
+            </a>
+        </div>
     </div>
     </div>
 
