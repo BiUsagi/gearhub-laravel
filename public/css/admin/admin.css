@@ -1004,9 +1004,11 @@ body {
     margin: 0 0 1rem 0;
     font-size: 0.875rem;
 }
-.breadcrumb a{
+
+.breadcrumb a {
     text-decoration: none;
 }
+
 .breadcrumb-item {
     color: var(--text-secondary);
 }
@@ -1020,4 +1022,64 @@ body {
     content: ">";
     color: var(--text-muted);
     margin: 0 0.5rem;
+}
+
+/* ===== NAV DIVIDER AND COLORS ===== */
+
+/* Nav Divider */
+.nav-divider {
+    height: 1px;
+    background: var(--border-color);
+    margin: 8px 16px;
+    opacity: 0.5;
+}
+
+.sidebar.collapsed .nav-divider {
+    margin: 8px 12px;
+}
+
+/* Badge trong submenu */
+.submenu .badge {
+    font-size: 10px;
+    padding: 2px 6px;
+    margin-left: auto;
+}
+
+/* Submenu max-height điều chỉnh cho nhiều items */
+.submenu.expanded {
+    max-height: 600px;
+}
+
+/* Icon màu sắc cho trạng thái */
+.nav-link .text-danger {
+    color: #dc3545 !important;
+}
+
+.nav-link .text-warning {
+    color: #ffc107 !important;
+}
+
+.nav-link .text-success {
+    color: #198754 !important;
+}
+
+.nav-link .text-info {
+    color: #0dcaf0 !important;
+}
+
+/* Dark mode cho màu sắc icon */
+[data-bs-theme="dark"] .nav-link .text-danger {
+    color: #f5c2c7 !important;
+}
+
+[data-bs-theme="dark"] .nav-link .text-warning {
+    color: #ffda6a !important;
+}
+
+[data-bs-theme="dark"] .nav-link .text-success {
+    color: #75b798 !important;
+}
+
+[data-bs-theme="dark"] .nav-link .text-info {
+    color: #6edff6 !important;
 }

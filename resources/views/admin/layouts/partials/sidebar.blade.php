@@ -76,13 +76,6 @@
                         </a>
                     </div>
                     <div class="nav-item">
-                        <a href="/admin/products/inventory"
-                            class="nav-link @if (request()->is('admin/products/inventory')) active @endif">
-                            <i class="bi bi-boxes"></i>
-                            <span>Quản lý tồn kho</span>
-                        </a>
-                    </div>
-                    <div class="nav-item">
                         <a href="/admin/products/attributes"
                             class="nav-link @if (request()->is('admin/products/attributes')) active @endif">
                             <i class="bi bi-sliders"></i>
@@ -141,43 +134,77 @@
 
             <!-- Orders -->
             <div class="nav-item">
-                <a href="#" class="nav-link has-submenu" data-submenu="orders-submenu" data-tooltip="Đơn hàng">
+                <a href="#" class="nav-link has-submenu @if (request()->is('admin/orders*')) expanded @endif"
+                    data-submenu="orders-submenu" data-tooltip="Đơn hàng">
                     <i class="bi bi-receipt"></i>
                     <span>Đơn hàng</span>
                     <span class="badge bg-warning">12</span>
                     <i class="bi bi-chevron-right dropdown-arrow"></i>
                 </a>
-                <div class="submenu" id="orders-submenu">
+                <div class="submenu @if (request()->is('admin/orders*')) expanded @endif" id="orders-submenu">
+                    <!-- Quản lý đơn hàng chính -->
                     <div class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="/admin/orders" class="nav-link @if (request()->is('admin/orders') && !request()->is('admin/orders/*')) active @endif">
                             <i class="bi bi-list-ul"></i>
                             <span>Tất cả đơn hàng</span>
                         </a>
                     </div>
+
+                    <!-- Quick access cho đơn hàng cần xử lý gấp -->
                     <div class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="bi bi-clock"></i>
-                            <span>Chờ xử lý</span>
+                        <a href="/admin/orders/pending"
+                            class="nav-link @if (request()->is('admin/orders/pending')) active @endif">
+                            <i class="bi bi-clock text-warning"></i>
+                            <span>Cần xử lý</span>
+                            <span class="badge bg-warning">28</span>
+                        </a>
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="nav-divider"></div>
+
+                    <!-- Chức năng chính -->
+                    <div class="nav-item">
+                        <a href="/admin/orders/create"
+                            class="nav-link @if (request()->is('admin/orders/create')) active @endif">
+                            <i class="bi bi-plus-circle"></i>
+                            <span>Tạo đơn hàng mới</span>
                         </a>
                     </div>
                     <div class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="/admin/orders/tracking"
+                            class="nav-link @if (request()->is('admin/orders/tracking')) active @endif">
                             <i class="bi bi-truck"></i>
-                            <span>Đang giao</span>
+                            <span>Theo dõi vận chuyển</span>
                         </a>
                     </div>
                     <div class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="bi bi-check-circle"></i>
-                            <span>Hoàn thành</span>
+                        <a href="/admin/orders/invoices"
+                            class="nav-link @if (request()->is('admin/orders/invoices')) active @endif">
+                            <i class="bi bi-receipt-cutoff"></i>
+                            <span>Quản lý hóa đơn</span>
+                        </a>
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="nav-divider"></div>
+
+                    <!-- Báo cáo và phân tích -->
+                    <div class="nav-item">
+                        <a href="/admin/orders/analytics"
+                            class="nav-link @if (request()->is('admin/orders/analytics')) active @endif">
+                            <i class="bi bi-graph-up"></i>
+                            <span>Phân tích đơn hàng</span>
                         </a>
                     </div>
                     <div class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="bi bi-x-circle"></i>
-                            <span>Đã hủy</span>
+                        <a href="/admin/orders/export"
+                            class="nav-link @if (request()->is('admin/orders/export')) active @endif">
+                            <i class="bi bi-download"></i>
+                            <span>Xuất báo cáo</span>
                         </a>
                     </div>
+
                 </div>
             </div>
 
@@ -260,17 +287,17 @@
 
             <!-- Inventory - Tồn kho -->
             <div class="nav-item">
-                <a href="#" class="nav-link has-submenu" data-submenu="inventory-submenu"
-                    data-tooltip="Tồn kho">
+                <a href="#" class="nav-link has-submenu @if (request()->is('admin/inventory*')) expanded @endif"
+                    data-submenu="inventory-submenu" data-tooltip="Tồn kho">
                     <i class="bi bi-boxes"></i>
                     <span>Tồn kho</span>
                     <i class="bi bi-chevron-right dropdown-arrow"></i>
                 </a>
-                <div class="submenu" id="inventory-submenu">
+                <div class="submenu @if (request()->is('admin/inventory*')) expanded @endif" id="inventory-submenu">
                     <div class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="bi bi-list-ul"></i>
-                            <span>Báo cáo tồn kho</span>
+                        <a href="/admin/inventory" class="nav-link @if (request()->is('admin/inventory')) active @endif">
+                            <i class="bi bi-boxes"></i>
+                            <span>Quản lý tồn kho</span>
                         </a>
                     </div>
                     <div class="nav-item">

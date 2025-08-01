@@ -5,40 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class InventoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        return view('admin.orders.index');
-    }
-
-    /**
-     * Display pending orders for quick processing
-     */
-    public function pending(Request $request)
-    {
-        return view('admin.orders.pending');
-    }
-
-    public function tracking(Request $request)
-    {
-        return view('admin.orders.tracking');
-    }
-
-    public function invoices(Request $request)
-    {
-        // Sample statistics - replace with actual data from database
-        $statistics = [
-            'draft' => 12,
-            'sent' => 25,
-            'paid' => 89,
-            'overdue' => 7
-        ];
-
-        return view('admin.orders.invoices', compact('statistics'));
+        return view('admin.inventory.index');
     }
 
     /**
@@ -46,7 +20,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('admin.orders.create');
+        //
     }
 
     /**

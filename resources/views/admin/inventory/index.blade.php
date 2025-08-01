@@ -3,7 +3,7 @@
 @section('title', 'Quản Lý Tồn Kho - GearHub Admin')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/admin/products/inventory.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/inventory/index.css') }}">
 @endpush
 
 @section('content')
@@ -12,7 +12,6 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="/admin/products">Sản Phẩm</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Quản Lý Tồn Kho</li>
             </ol>
         </nav>
@@ -661,5 +660,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('js/admin/products/inventory.js') }}"></script>
+    <script src="{{ asset('js/admin/inventory/index.js') }}"></script>
 @endpush
