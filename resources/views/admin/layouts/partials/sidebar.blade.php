@@ -185,26 +185,6 @@
                             <span>Quản lý hóa đơn</span>
                         </a>
                     </div>
-
-                    <!-- Divider -->
-                    <div class="nav-divider"></div>
-
-                    <!-- Báo cáo và phân tích -->
-                    <div class="nav-item">
-                        <a href="/admin/orders/analytics"
-                            class="nav-link @if (request()->is('admin/orders/analytics')) active @endif">
-                            <i class="bi bi-graph-up"></i>
-                            <span>Phân tích đơn hàng</span>
-                        </a>
-                    </div>
-                    <div class="nav-item">
-                        <a href="/admin/orders/export"
-                            class="nav-link @if (request()->is('admin/orders/export')) active @endif">
-                            <i class="bi bi-download"></i>
-                            <span>Xuất báo cáo</span>
-                        </a>
-                    </div>
-
                 </div>
             </div>
 

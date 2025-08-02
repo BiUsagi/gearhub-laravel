@@ -6,8 +6,11 @@
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 24px;
-    padding: 20px 0;
-    border-bottom: 1px solid var(--border-color);
+    padding: 24px;
+    border-bottom: 2px solid var(--border-color);
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
 }
 
 .header-main .page-title {
@@ -34,7 +37,7 @@
 /* ===== QUICK STATS ===== */
 .quick-stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 16px;
     margin-bottom: 24px;
 }
@@ -478,9 +481,35 @@
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
-@media (max-width: 1200px) {
-    .quick-stats {
+@media (min-width: 1401px) {
+
+    /* Desktop: Sidebar collapsed = 4 columns, Sidebar expanded = 2 columns */
+    body.sidebar-collapsed .quick-stats {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    body:not(.sidebar-collapsed) .quick-stats {
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 1400px) {
+
+    /* Laptop and below: Always 2 columns regardless of sidebar state */
+    .quick-stats,
+    body.sidebar-collapsed .quick-stats,
+    body:not(.sidebar-collapsed) .quick-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+
+    .quick-stats,
+    body.sidebar-collapsed .quick-stats,
+    body:not(.sidebar-collapsed) .quick-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
     }
 }
 
